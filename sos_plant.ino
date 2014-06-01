@@ -62,7 +62,7 @@ void ledSOS(){                        // this is the light SOS message (with the
     digitalWrite(LED_PIN, LOW); 
     delay(100);
   }
-}
+} 
 
 void loop()
 {
@@ -71,6 +71,7 @@ void loop()
   
   if (reading<=threshold){            // if the recorded value is below 800
     unsigned long currentMillis_1 = millis();
+    
     if (currentMillis_1-previousMillis_1>interval_1){ // if a few seconds have passed
       previousMillis_1=currentMillis_1;
       ledSOS();                         // launch the SOS light message
@@ -78,14 +79,17 @@ void loop()
       Serial.println(message3);
       Serial.println(reading);
     }
+    
   }
   else if(reading>threshold){
     unsigned long currentMillis_2=millis();    // if the plant has enough water
+    
     if (currentMillis_2-previousMillis_2>interval_2){ // if a few seconds have passed
       previousMillis_2=currentMillis_2;
       Serial.println(message2);         // print the messages to the serial monitor
       Serial.println(message3);
       Serial.println(reading);
     }
+    
   }
-}
+} // end loop
